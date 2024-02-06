@@ -1,0 +1,35 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+img:hover {
+  transform: translateY(-30px);
+}
+
+button {
+  background-color: #2FB195;
+  color: white;
+  padding: 15px;
+  width: 350px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: #238670;
+}
+
+#view-students {
+  background-color: transparent;
+  border: 2px solild #000;
+  color: #000;
+}
+
+#view-students:hover {
+  background-color: #c7c7c7;
+}
