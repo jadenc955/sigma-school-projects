@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100vh;
+}
+
+#root, #parent-container {
+  height: 100%;
+  width: 100%;
+}
+
+#parent-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+}
+
+#container {
+  text-align: center;
+}
+
+p {
+  margin: 2rem;
+}
+
+button {
+  background-color: darkcyan;
+  color: white;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: rgb(2, 112, 112);
+}
+
+.dark {
+  background-color: black;
+  color: white;
+}
