@@ -13,7 +13,13 @@ function App() {
       <div id="container">
         <h1>Theme Switcher</h1>
         <p>{isDarkTheme ? "Dark" : "Light"} Theme</p>
-        <button onClick={toggleDarkTheme}>Toggle Theme</button>
+
+        <div className="switch-container">
+          <input type="checkbox" name="switch" id="switch" onClick={toggleDarkTheme}/>
+          <label htmlFor="switch"></label>
+        </div>
+{/* 
+        <button onClick={toggleDarkTheme}>Toggle Theme</button> */}
       </div>
     </div>
   );

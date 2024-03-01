@@ -42,3 +42,56 @@ button:hover {
   background-color: black;
   color: white;
 }
+
+
+.switch-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+/* Hide default HTML checkbox */
+
+input[type="checkbox"] {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+/* Creates the toggle switch container */
+
+label {
+  width: 8rem;
+  height: 3rem;
+  background-color: black;
+  border-radius: 100px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+/* Creates the toggle ball */
+
+label::after {
+  content: "";
+  width: 30%;
+  height: 80%;
+  position: absolute;
+  border-radius: 20px;
+  top: 0.3rem;
+  left: 0.3rem;
+  background-color: white;
+  transition: 0.4s;
+}
+
+/* Enables the switch animation*/
+
+input:checked+label::after {
+  left: 65%;
+  background-color: black;
+}
+
+/* Changes background color of the switch container when clicked */
+input:checked+label {
+  background-color: white;
+}
