@@ -18,8 +18,8 @@ function App() {
           <input type="checkbox" name="switch" id="switch" onClick={toggleDarkTheme}/>
           <label htmlFor="switch"></label>
         </div>
-{/* 
-        <button onClick={toggleDarkTheme}>Toggle Theme</button> */}
+
+        {/* <button onClick={toggleDarkTheme}>Toggle Theme</button> */}
       </div>
     </div>
   );
