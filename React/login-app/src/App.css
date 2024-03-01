@@ -1,0 +1,28 @@
+nav ul {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+nav {
+    background-color: lightblue;
+    padding-bottom: 0.1rem;;
+    padding-top: 0.5rem;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.underline {
+    padding-bottom: 3px;
+    font-weight: 500;
+}
+
+.underline:hover {
+    border-bottom: 3px solid black;
+}
