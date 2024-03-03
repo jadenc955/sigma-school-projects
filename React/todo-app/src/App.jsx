@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
 import AddTodo from "./pages/AddTodo";
+import useLocalStorage from "use-local-storage";
+import { TodoContext } from "./contexts/TodoContext";
 
 function Layout() {
   return (
@@ -22,15 +24,20 @@ function Layout() {
 }
 
 export default function App() {
+  const [todos, setTodos] = useLocalStorage("todos", []);
+  // The todos will be an array of objects, done in the AddTodo upon form submission
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />} path="/">
-          <Route index element={<Home />} />
-          <Route element={<AddTodo />} path="add" />
-          <Route element={<ErrorPage />} path="*" />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <TodoContext.Provider value={{ todos, setTodos }}>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />} path="/">
+            <Route index element={<Home />} />
+            <Route element={<AddTodo />} path="add" />
+            <Route element={<ErrorPage />} path="*" />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </TodoContext.Provider>
   );
 }
