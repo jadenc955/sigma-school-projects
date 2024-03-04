@@ -1,27 +1,42 @@
 import { Button, Container, Form } from "react-bootstrap";
 import { useContext, useState } from "react";
 import { TodoContext } from "../contexts/TodoContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-export default function AddTodo() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [completed, setCompleted] = useState(false);
+export default function EditTodo() {
+  // Destructures the todo object that was passed from Home component
+  const { state } = useLocation();
+  const { todo } = state;
+
+  const [title, setTitle] = useState(todo.title);
+  const [description, setDescription] = useState(todo.description);
+  const [completed, setCompleted] = useState(todo.completed);
   const setTodos = useContext(TodoContext).setTodos;
   const todos = useContext(TodoContext).todos;
   const navigate = useNavigate();
 
+  function updateTodo() {
+    let editedTodo = todos.find((el) => el.id === todo.id);
+    editedTodo = {
+      id: todo.id,
+      title: title,
+      description: description,
+      completed: completed,
+    };
+
+    let indexToDelete = todos.findIndex((el) => el.id === todo.id);
+    todos.splice(indexToDelete, 1, editedTodo);
+    setTodos(todos);
+    navigate("/");
+  }
+
   return (
     <Container>
-      <h1 className="my-3">Add Todo</h1>
+      <h1 className="my-3">Edit Todo</h1>
       <Form
         onSubmit={(evt) => {
           evt.preventDefault();
-          setTodos([
-            ...todos,
-            { id: Date.now(), title, description, completed },
-          ]);
-          navigate("/");
+          updateTodo();
         }}
       >
         <Form.Group className="mb-3" controlId="title">

@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
 import AddTodo from "./pages/AddTodo";
+import EditTodo from "./pages/EditTodo";
 import useLocalStorage from "use-local-storage";
 import { TodoContext } from "./contexts/TodoContext";
 
@@ -34,6 +35,7 @@ export default function App() {
           <Route element={<Layout />} path="/">
             <Route index element={<Home />} />
             <Route element={<AddTodo />} path="add" />
+            <Route element={<EditTodo />} path="edit" />
             <Route element={<ErrorPage />} path="*" />
           </Route>
         </Routes>
