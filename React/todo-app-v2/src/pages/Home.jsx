@@ -20,7 +20,7 @@ function CardGroup({ todos }) {
   return todos.map((todo) => {
     return (
       <Col md={4} key={todo.id}>
-        <TodoCard todo={todo}/>
+        <TodoCard todo={todo} />
       </Col>
     );
   });

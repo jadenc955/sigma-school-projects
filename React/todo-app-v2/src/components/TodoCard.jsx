@@ -1,13 +1,12 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
-import { TodoContext } from "../contexts/TodoContext";
+import DeleteModal from "./DeleteModal";
 
 export default function TodoCard({ todo }) {
   const completed = todo.completed;
   const border = completed ? "success" : "danger";
   const [timer, setTimer] = useState(0);
   const [timerInterval, setTimerInterval] = useState(null);
-  const setTodos = useContext(TodoContext).setTodos;
 
   //   Functions related to the timer
   const startTimer = () => {
@@ -29,12 +28,6 @@ export default function TodoCard({ todo }) {
     clearInterval(timerInterval);
     setTimerInterval(null);
     setTimer(0);
-  };
-
-  const deleteTodo = () => {
-    setTodos((prevTodos) =>
-      prevTodos.filter((prevTodo) => prevTodo.id !== todo.id)
-    );
   };
 
   //   To stop setInterval when the component is unmounted or there's a change in timerInterval
@@ -62,9 +55,7 @@ export default function TodoCard({ todo }) {
           <Button variant="secondary" href={`todo/${todo.id}`} className="ms-2">
             <i className="bi bi-pencil"></i>
           </Button>
-          <Button variant="danger" onClick={deleteTodo} className="ms-2">
-            <i className="bi bi-trash3"></i>
-          </Button>
+          <DeleteModal todo={todo} />
         </Card.Body>
       </Card>
     </>
