@@ -14,7 +14,7 @@ export default function AddTodo() {
   function addTodo(event) {
     event.preventDefault();
     setTodos([...todos, { id: Date.now(), title, description, completed }]);
-    navigate("/");
+    navigate("/home");
   }
 
   return (

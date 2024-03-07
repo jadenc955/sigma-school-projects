@@ -6,13 +6,14 @@ import AddTodo from "./pages/AddTodo";
 import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
 import EditTodo from "./pages/EditTodo";
+import Login from "./pages/Login";
 
 function Layout() {
   return (
     <>
       <Navbar bg="light" variant="light">
         <Container>
-          <Navbar.Brand href="/">Todos</Navbar.Brand>
+          <Navbar.Brand href="/home">Todos</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="/add">Add Todo</Nav.Link>
           </Nav>
@@ -31,7 +32,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
+            <Route index element={<Login />} />
+            <Route path="home" element={<Home />} />
             <Route path="add" element={<AddTodo />} />
             <Route path="todo/:id" element={<EditTodo />} />
             <Route path="*" element={<ErrorPage />} />

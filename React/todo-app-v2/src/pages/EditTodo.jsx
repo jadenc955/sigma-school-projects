@@ -24,7 +24,7 @@ export default function EditTodo() {
       return todo;
     });
     setTodos(updatedTodos);
-    navigate("/");
+    navigate("/home");
   }
 
   return (
