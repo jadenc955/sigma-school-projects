@@ -1,0 +1,22 @@
+span.amount, a.add, a.minus {
+    border: 1px solid black;
+}
+
+span.amount {
+    padding: 0.5rem 1.5rem;
+}
+
+a.add, a.minus {
+    color: grey;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+}
+
+a:hover {
+    cursor: pointer;
+    user-select: none;
+}
+
+span.itemprice {
+    color: orange;
+}

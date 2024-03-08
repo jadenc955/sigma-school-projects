@@ -2,14 +2,15 @@ import { Container, Row, Col } from "react-bootstrap";
 import Item from "../components/Item";
 
 const items = [
-  { id: 1, name: "Pen", description: "It's a pen", price: "RM10" },
+  { id: 1, name: "Dell Laptop", description: "Latest model", price: "RM3500" },
   {
     id: 2,
-    name: "Laptop",
-    description: "I think it's a laptop",
-    price: "RM1200",
+    name: "Acer Laptop",
+    description: "Older generation",
+    price: "RM3000",
   },
-  { id: 3, name: "iPhone 2", description: "Might be iPhone 3", price: "RM30" },
+  { id: 3, name: "iPhone 15", description: "Selling fast", price: "RM5000" },
+  { id: 4, name: "Notebook", description: "Basic notebook", price: "RM20" },
 ];
 
 export default function Home() {

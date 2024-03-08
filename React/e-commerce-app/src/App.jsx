@@ -4,9 +4,14 @@ import { BrowserRouter, Link, Outlet, Routes, Route } from "react-router-dom";
 import { store } from "./store";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
+import "./App.css";
 
 export function Layout() {
-  const cartItemCount = useSelector((state) => state.cart.length);
+  const cart = useSelector((state) => state.cart);
+
+  const totalItemsInCart = cart.reduce((accumulator, item) => {
+    return accumulator + item.amount;
+  }, 0);
 
   return (
     <>
@@ -19,7 +24,7 @@ export function Layout() {
             <Nav.Link as={Link} to={"/cart"}>
               <i className="bi bi-cart"></i>
               <Badge pill variant="primary">
-                {cartItemCount}
+                {totalItemsInCart}
               </Badge>
             </Nav.Link>
           </Nav>
