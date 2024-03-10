@@ -1,20 +1,18 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { TodoContext } from "../contexts/TodoContext";
+import { useDispatch } from "react-redux";
+import { deleteTodos } from "../userSlice";
 
-export default function DeleteModal({todo}) {
+export default function DeleteModal({ todo }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const setTodos = useContext(TodoContext).setTodos;
+  const dispatch = useDispatch();
 
   const deleteTodo = () => {
     handleClose();
-    setTodos((prevTodos) =>
-      prevTodos.filter((prevTodo) => prevTodo.id !== todo.id)
-    );
+    dispatch(deleteTodos(todo.id));
   };
 
   return (

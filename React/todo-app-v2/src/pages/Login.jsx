@@ -1,5 +1,8 @@
 import { Container, Form, Button } from "react-bootstrap";
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addUser, addToken } from "../userSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -7,10 +10,41 @@ export default function Login() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
 
+  const dispatch = useDispatch();
+  const userProfile = useSelector((state) => state.user.userProfile);
+
+  const navigate = useNavigate();
+
   function signUp() {
-    setIsSignUp(true);
-    if (password !== confirmPassword) {
-      alert("Passwords do not match.");
+    if (!isSignUp) {
+      setUsername("");
+      setPassword("");
+      setIsSignUp(true);
+    }
+
+    if (isSignUp) {
+      if (!username) {
+        alert("Please enter a username");
+      } else if (!password) {
+        alert("Please enter a password");
+      }
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match");
+      }
+
+      if (username && password && password === confirmPassword) {
+        if (userProfile.findIndex((el) => el.username === username) !== -1) {
+          alert("Username already exists.");
+        } else {
+          dispatch(addUser({ username, password }));
+          alert("Sign up successful")
+          setUsername("");
+          setPassword("");
+          setConfirmPassword("");
+          setIsSignUp(false);
+        }
+      }
     }
   }
 
@@ -20,6 +54,24 @@ export default function Login() {
       setUsername("");
       setPassword("");
       setConfirmPassword("");
+    }
+    if (!isSignUp) {
+      if (!username) {
+        alert("Please enter username");
+      } else if (!password) {
+        alert("Please enter password");
+      } else {
+        const userIndex = userProfile.findIndex(
+          (el) => el.username === username
+        );
+        if (userIndex !== -1 && userProfile[userIndex].password === password) {
+          alert("Login successful");
+          dispatch(addToken({ username }));
+          navigate("/Home");
+        } else {
+          alert("Incorrect username/password");
+        }
+      }
     }
   }
 
@@ -60,10 +112,10 @@ export default function Login() {
           </Form.Group>
         )}
 
-        <Button onClick={login} type="submit">
+        <Button onClick={login} type="button">
           Login
         </Button>
-        <Button className="ms-2" onClick={signUp} type="submit">
+        <Button className="ms-2" onClick={signUp} type="button">
           Sign Up
         </Button>
       </Form>

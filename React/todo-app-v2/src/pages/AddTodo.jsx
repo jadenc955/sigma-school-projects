@@ -1,19 +1,19 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { TodoContext } from "../contexts/TodoContext";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addTodos } from "../userSlice";
 
 export default function AddTodo() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [completed, setCompleted] = useState(false);
-  const setTodos = useContext(TodoContext).setTodos;
-  const todos = useContext(TodoContext).todos;
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   function addTodo(event) {
     event.preventDefault();
-    setTodos([...todos, { id: Date.now(), title, description, completed }]);
+    dispatch(addTodos({ id: Date.now(), title, description, completed }));
     navigate("/home");
   }
 

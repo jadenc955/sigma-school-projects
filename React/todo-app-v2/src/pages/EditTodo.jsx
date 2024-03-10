@@ -1,11 +1,16 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { TodoContext } from "../contexts/TodoContext";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { editTodos } from "../userSlice";
 
 export default function EditTodo() {
-  const setTodos = useContext(TodoContext).setTodos;
-  const todos = useContext(TodoContext).todos;
+  const userProfile = useSelector((state) => state.user.userProfile);
+  const userToken = useSelector((state) => state.user.userToken);
+
+  const todos = userProfile.find((el) => el.token === userToken).todolist;
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const id = parseInt(useParams().id);
@@ -23,7 +28,7 @@ export default function EditTodo() {
       }
       return todo;
     });
-    setTodos(updatedTodos);
+    dispatch(editTodos(updatedTodos));
     navigate("/home");
   }
 
