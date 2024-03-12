@@ -31,7 +31,7 @@ export default function DeleteModal({ transaction }) {
         <i className="bi bi-trash3 ps-1"></i>
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} style={{ color: "black" }}>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>
         </Modal.Header>

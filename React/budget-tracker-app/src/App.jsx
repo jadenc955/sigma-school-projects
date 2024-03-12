@@ -6,11 +6,13 @@ import {
   Outlet,
   useNavigate,
 } from "react-router-dom";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Provider } from "react-redux";
 import { store, persistor } from "./store";
 import { PersistGate } from "redux-persist/integration/react";
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import useLocalStorage from "use-local-storage";
 import { removeToken } from "./userSlice";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -21,6 +23,17 @@ function Layout() {
   const userToken = useSelector((state) => state.user.userToken);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [darkTheme, setDarkTheme] = useLocalStorage("darkTheme", false);
+
+  useEffect(() => {
+    if (darkTheme) {
+      document.body.style.backgroundColor = "black";
+      document.body.style.color = "white";
+    } else {
+      document.body.style.backgroundColor = "white";
+      document.body.style.color = "black";
+    }
+  }, [darkTheme]);
 
   return (
     <>
@@ -41,6 +54,9 @@ function Layout() {
                 </Nav.Link>
               </>
             )}
+            <Button onClick={() => setDarkTheme(!darkTheme)} className="ms-3">
+              Set {darkTheme ? "Light" : "Dark"} Theme
+            </Button>
           </Nav>
         </Container>
       </Navbar>
