@@ -26,7 +26,7 @@ export default function AddTransaction() {
 
   return (
     <Container>
-      <h1 className="my-3">Add Todo</h1>
+      <h1 className="my-3">Add Transaction</h1>
       <Form onSubmit={addTransaction}>
         <Form.Group className="mb-3" controlId="title">
           <Form.Label>Description</Form.Label>
