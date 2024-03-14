@@ -21,7 +21,7 @@ function Layout() {
     <>
       <Navbar bg="light" variant="light">
         <Container>
-          <Navbar.Brand href="/home">Todos</Navbar.Brand>
+          <Navbar.Brand href="/home">Todos for Travellers</Navbar.Brand>
           <Nav className="me-auto">
             {userToken && (
               <>
